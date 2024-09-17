@@ -1,0 +1,170 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>App Test</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/lit/polyfill-support.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../docs/style.css" />
+
+    <script type="module" src="../prepackage/ml_word_viewer.js"></script>
+    <script type="module" src="../prepackage/ml_checklist.js"></script>
+    <script type="module" src="../prepackage/ml_text_edit.js"></script>
+    <script type="module" src="../prepackage/index.js"></script>
+
+    <script type="module">
+      // initHueSelector("#colorHue", "--color-hue");
+
+      function initHueSelector(selector, propName) {
+        document.querySelector(selector).addEventListener("input", (event) => {
+          console.log("Hue input:", event, " value=", event.target.value);
+          document.documentElement.style.setProperty(
+            propName,
+            event.target.value,
+          );
+        });
+      }
+      // window.onunhandledrejection = function(error) {
+      // 	console.error("onunhandledrejection", error);
+      // };
+      var mlLogEvent = (event) => console.log("mlLogEvent", event);
+      var mlTextEditDemo = document.querySelector("#mlTextEditDemo");
+      mlTextEditDemo.addEventListener("change", mlLogEvent);
+      mlTextEditDemo.addEventListener("mlChange", mlLogEvent);
+
+      document
+        .querySelector("#demoButton")
+        .addEventListener("click", mlLogEvent);
+    </script>
+  </head>
+  <body>
+    <h1>Lorem Ipsum</h1>
+    <!-- <label for="colorHue">Hue</label>
+		<input type="range" id="colorHue" min="0" max="256" value="224" step="1" /> -->
+    <p>
+      Nulla gravida id velit quis cursus.
+      <a href="#1">Vestibulum ante ipsum</a> primis in faucibus orci luctus et
+      ultrices posuere cubilia curae; Aenean non rutrum mauris, vel finibus mi.
+      Fusce facilisis laoreet leo, ut efficitur nunc congue ut. Vestibulum
+      accumsan ac odio sit amet dignissim. Cras a lectus lacus. Suspendisse
+      posuere lectus at diam scelerisque cursus.
+      <a href="#2">Curabitur</a> pharetra risus a maximus pulvinar. Suspendisse
+      ultrices faucibus laoreet. Donec eu nisi non turpis gravida tincidunt eu a
+      ex. Suspendisse eu neque leo. Morbi interdum eros id dapibus vulputate.
+    </p>
+
+    <!-- <ml-word-viewer words="🤘,Rock,n',Roll"></ml-word-viewer> -->
+
+    <button id="demoButton">Button</button>
+    <button disabled>Disabled Button</button>
+
+    <h2>
+      Vestibulum accumsan ac odio sit amet dignissim. Cras a lectus lacus.
+    </h2>
+    <ml-text-edit></ml-text-edit>
+    <br />
+    <ml-text-edit id="mlTextEditDemo" ml-text="some text"></ml-text-edit>
+    <!-- <br>
+		<ml-text-edit ml-text="other text" ml-editing></ml-text-edit> -->
+
+    <hr />
+
+    <h2>ML Checklist</h2>
+    <ml-checklist></ml-checklist>
+
+    <hr />
+
+    <!-- <h2>Element Playground</h2>
+
+		<p>Paragraph with a <a href="#">link</a>.</p> -->
+
+    <br />
+
+    <input type="checkbox" id="cb1" checked />
+    <label for="cb1">Checkbox</label>
+
+    <br />
+
+    <input type="checkbox" id="cb2" checked disabled />
+    <label for="cb2">Disabled Checkbox</label>
+
+    <br />
+
+    <label for="theText">Text:</label>
+    <input
+      id="theText"
+      name="theText"
+      placeholder="placeholder"
+      spellcheck="true"
+    />
+    <input id="theRo" name="theRo" value="Readonly Value" readonly />
+
+    <!-- <br>
+	
+		<label for="theProgress">Progress:</label>
+		<progress id="theProgress" max="100" value="70">70%</progress>
+
+		<br>
+
+		<label for="theSelect">Select:</label>
+		<select id="theSelect">
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+		</select>
+
+		<br>
+
+		<label for="theSelectDisabled">Disabled Select:</label>
+		<select id="theSelectDisabled" disabled>
+			<option value="1">one</option>
+			<option value="2">two</option>
+			<option value="3">three</option>
+		</select>
+
+		<br>
+
+		<label for="theSelectGr">Select (Groups):</label>
+		<select id="theSelectGr">
+			<optgroup label="Numbers">
+				<option value="1">one</option>
+				<option value="2">two</option>
+				<option value="3">three</option>
+			</optgroup>
+			<optgroup label="Letters">
+				<option value="a">A</option>
+				<option value="b">B</option>
+				<option value="c">C</option>
+			</optgroup>
+			<option value="ng1">No group one</option>
+			<option value="ng2">No group two</option>
+		</select>
+
+		<br> -->
+
+    <!-- color, date, email, file, number, password, search, tel, url -->
+
+    <!-- range, text -->
+    <!-- <fieldset>
+			<legend>Radio Input</legend>
+			<div>
+				<input type="radio" id="huey" name="drone" value="huey">
+				<label for="huey">Huey</label>
+			</div>
+			<input type="radio" id="dewey" name="drone" value="dewey" checked>
+			<label for="dewey">Dewey</label>
+		
+			<input type="radio" id="louie" name="drone" value="louie">
+			<label for="louie">Louie</label>
+		</fieldset>
+
+		<br>
+
+		<label for="theRange">Range:</label>
+		<input type="range" id="theRange" name="theRange" min="0" max="11">
+
+		<br> -->
+  </body>
+</html>

@@ -1,0 +1,181 @@
+:root {
+  --16px: 1rem;
+  --24px: 1.5rem;
+  --32px: 2rem;
+  --300px: 18.75rem;
+  --1000px: 62.5rem;
+
+  --color-hue: 224;
+  --test: hsl(225, 53%, 51%);
+
+  --ml-background-color: hsl(var(--color-hue), 20%, 96%);
+  --ml-light-bg-color: white;
+
+  --ml-color: hsl(var(--color-hue), 20%, 40%);
+  --ml-accent-color: hsl(var(--color-hue), 40%, 50%);
+  --ml-highlight-color: hsl(var(--color-hue), 85%, 60%);
+  --ml-disabled-color: hsl(var(--color-hue), 10%, 70%);
+
+  --ml-font-family: system-ui, sans-serif;
+}
+body {
+  font-family: var(--ml-font-family);
+  font-size: 1.25rem;
+  line-height: 1.5;
+
+  padding: 0.75rem;
+
+  color: var(--ml-color);
+  background-color: var(--ml-background-color);
+
+  max-width: 60ch;
+  margin: auto;
+}
+h1,
+h2,
+h3 {
+  line-height: 1.19;
+  font-family: var(--ml-font-family);
+  font-weight: bold;
+  margin: 2rem 0 1.5rem 0;
+  text-wrap: balance;
+}
+h1 {
+  font-size: 2.25em;
+  margin-top: 3rem;
+}
+h2 {
+  font-size: 2em;
+}
+h3 {
+  font-size: 1.75em;
+}
+p {
+  margin: 1rem 0 2.5rem 0;
+}
+small,
+sub,
+sup {
+  font-size: 75%;
+}
+hr {
+  border: 1px solid var(--ml-color);
+}
+
+p,
+li,
+figcaption {
+  text-wrap: pretty;
+  max-width: 60ch;
+}
+
+a {
+  color: var(--ml-accent-color);
+}
+a:visited {
+  color: var(--ml-accent-color);
+}
+a:hover {
+  color: var(--ml-highlight-color);
+}
+
+/* TODO(jw): focus colors, button colors, text edit colors, selection colors? */
+
+fieldset {
+  padding: 0.35rem 0.75rem 0.625rem;
+}
+button,
+input,
+optgroup,
+select,
+textarea {
+  font-family: inherit;
+  font-size: 100%;
+  line-height: 1.19;
+  /* margin: 0; */
+  margin: 0.25rem;
+  color: var(--ml-color);
+}
+button,
+input {
+  overflow: visible; /* Show overflow in Edge. */
+}
+button,
+select {
+  text-transform: none; /* Remove inheritance of text transform in Edge. */
+}
+button,
+[type="button"],
+[type="reset"],
+[type="submit"] {
+  -webkit-appearance: button; /* Allow styling these types in iOS and Safari. */
+}
+button {
+  border: 1px solid var(--ml-color);
+  border-radius: 0.25rem;
+
+  background: var(--ml-background-color);
+  color: var(--ml-color);
+
+  cursor: pointer;
+
+  padding: 0.25rem 0.5rem;
+
+  text-decoration: none;
+  --webkit-appearance: button;
+  white-space: nowrap;
+  min-width: 2.75rem;
+  min-height: 2.75rem;
+
+  outline: 3px solid var(blue);
+}
+button[disabled] {
+  /* opacity: 0.75; */
+  border-color: var(--ml-disabled-color);
+  color: var(--ml-disabled-color);
+  pointer-events: none;
+}
+button:hover {
+  border-color: var(--ml-highlight-color);
+  color: var(--ml-highlight-color);
+}
+button:active {
+  /* pressed */
+  background-color: var(--ml-light-bg-color);
+  border-color: var(--ml-highlight-color);
+  color: var(--ml-highlight-color);
+}
+/* button:focus { 
+}
+button:focus-visible {
+} */
+/* button[aria-pressed="true"] { 
+    outline: 3px solid var(red);
+
+}
+button[aria-pressed="false"] { 
+    outline: 3px solid var(red);
+
+}
+*/
+
+/**
+* Remove the inner border and padding in Firefox.
+*/
+/* button::-moz-focus-inner,
+[type="button"]::-moz-focus-inner,
+[type="reset"]::-moz-focus-inner,
+[type="submit"]::-moz-focus-inner {
+    border-style: none;
+    padding: 0;
+} */
+
+/**
+* Restore the focus styles unset by the previous rule.
+*/
+/* button:-moz-focusring,
+[type="button"]:-moz-focusring,
+[type="reset"]:-moz-focusring,
+[type="submit"]:-moz-focusring {
+    outline: 3px solid var(red);
+} */

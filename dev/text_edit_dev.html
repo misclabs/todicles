@@ -1,0 +1,31 @@
+<!doctype html>
+<html>
+  <head>
+    <meta charset="utf-8" />
+    <title>Checklist Dev</title>
+
+    <script src="../node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js"></script>
+    <script src="../node_modules/lit/polyfill-support.js"></script>
+
+    <link rel="stylesheet" type="text/css" href="../docs/style.css" />
+
+    <script type="module" src="../prepackage/ml_text_edit.js"></script>
+    <script type="module" src="../prepackage/index.js"></script>
+
+    <script type="module">
+      const checklist = document.querySelector("ml-checklist");
+      checklist.addEventListener("add", (ev) => console.log(ev));
+      checklist.addEventListener("change", (ev) => console.log(ev));
+      checklist.addEventListener("delete", (ev) => console.log(ev));
+    </script>
+  </head>
+  <body>
+    <h1>Lorem Ipsum</h1>
+    <ml-checklist>
+      <div slot="empty">
+        <!-- Displayed when the list is empty -->
+        It's empty, Jim! 🙀
+      </div>
+    </ml-checklist>
+  </body>
+</html>
