@@ -5,8 +5,6 @@ the basics of [Lit](https://lit.dev/).
 
 [Demo](http://misclabs.github.io/todicles)
 
-[Source code](https://github.com/misclabs/todicles)
-
 ## Setup
 
 Just install the dependencies:
