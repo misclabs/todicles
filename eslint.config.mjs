@@ -12,7 +12,12 @@ export default [
     languageOptions: { globals: globals.browser },
   },
   {
-    ignores: ["**/*.config.mjs", "docs/**/*.js", "prepackage/"],
+    ignores: [
+      "**/*.config.mjs",
+      "docs/**/*.js",
+      "prepackage/",
+      "postcss.config.js",
+    ],
   },
   eslintJs.configs.recommended,
   ...typescriptEslint.configs.recommended,

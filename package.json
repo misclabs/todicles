@@ -3,11 +3,10 @@
   "version": "1.0.0-alpha",
   "private": true,
   "scripts": {
-    "tidy": "eslint && prettier . --write",
-    "build:prepackage": "tsc",
-    "watch:prepackage": "tsc --watch",
-    "build:package": "node ./esbuild.mjs",
-    "build": "npm run tidy && npm run build:prepackage && npm run build:package",
+    "tidy": "prettier . --write",
+    "check": "tsc --noEmit && eslint",
+    "build": "node ./esbuild.mjs",
+    "all": "npm run tidy && npm run check && npm run build",
     "serve": "wds --watch"
   },
   "devDependencies": {
@@ -15,11 +14,16 @@
     "@web/dev-server": "^0.4.6",
     "@web/dev-server-legacy": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^2.8.0",
+    "cssnano": "^7.0.6",
     "esbuild": "0.23.1",
+    "esbuild-postcss": "^0.0.4",
     "eslint": "^9.10.0",
     "eslint-config-prettier": "^9.1.0",
     "eslint-plugin-lit": "^1.15.0",
     "globals": "^15.9.0",
+    "postcss": "^8.4.47",
+    "postcss-cli": "^11.0.0",
+    "postcss-preset-env": "^10.0.3",
     "prettier": "3.3.3",
     "typescript": "~5.2.0",
     "typescript-eslint": "^8.5.0"
