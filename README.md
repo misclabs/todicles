@@ -13,12 +13,12 @@ Just install the dependencies:
 npm i
 ```
 
-## Build
+## Building
 
 To build:
 
 ```bash
-npm run build
+npm run all
 ```
 
 This will tidy everything with Prettier, check with eslint, compile Typescript sources, and package everything to the `docs` directory (for publishing w/ GitHub pages).
