@@ -10,7 +10,7 @@ the basics of [Lit](https://lit.dev/).
 Just install the dependencies:
 
 ```bash
-npm i
+pnpm i
 ```
 
 ## Building
@@ -18,7 +18,7 @@ npm i
 To build:
 
 ```bash
-npm run all
+pnpm all
 ```
 
 This will tidy everything with Prettier, check with eslint, compile Typescript sources, and package everything to the `docs` directory (for publishing w/ GitHub pages).
@@ -28,5 +28,5 @@ This will tidy everything with Prettier, check with eslint, compile Typescript s
 Todicles uses [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) for local dev testing. Run the dev server with:
 
 ```bash
-npm run serve
+pnpm serve
 ```
