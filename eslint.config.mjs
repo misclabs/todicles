@@ -15,7 +15,8 @@ export default [
     ignores: [
       "**/*.config.mjs",
       "docs/**/*.js",
-      "prepackage/",
+      "test/build/**/*.js",
+      "esbuild.mjs",
       "postcss.config.js",
     ],
   },

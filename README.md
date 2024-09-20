@@ -13,19 +13,33 @@ Just install the dependencies:
 pnpm i
 ```
 
+## Build Configuration
+
+In general all build scripts are configured by the `MODE` environemnt variable. When set to `dev` (the default):
+
+- builds to `test/build`
+- dev serve from `test`
+
+If `MODE` is `prod`:
+
+- builds to `docs` for hosting on GitHub pages.
+- dev serve from `docs`
+
+Setting `MODE` should work for all build scripts including watching and serving.
+
 ## Building
 
-To build:
+To do everything:
 
 ```bash
 pnpm all
 ```
 
-This will tidy everything with Prettier, check with eslint, compile Typescript sources, and package everything to the `docs` directory (for publishing w/ GitHub pages).
+This will tidy everything with Prettier, check with eslint, compile Typescript sources, and package everything together. `pnpm pub` is a shortcut for `MODE=prod pnpm all`.
 
 ## Dev Server
 
-Todicles uses [Web Dev Server](https://modern-web.dev/docs/dev-server/overview/) for local dev testing. Run the dev server with:
+Run the dev server with:
 
 ```bash
 pnpm serve

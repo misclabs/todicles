@@ -2,6 +2,7 @@ import { html, css, LitElement, TemplateResult } from "lit";
 import { customElement, property, state, query } from "lit/decorators.js";
 import { repeat } from "lit/directives/repeat.js";
 import { mlUiStyles } from "./ml_ui_styles";
+import { MlTextEdit } from "./ml_text_edit";
 
 type ChecklistItem = {
   id: number;
@@ -11,6 +12,21 @@ type ChecklistItem = {
 
 @customElement("ml-checklist")
 export class MlChecklist extends LitElement {
+  @property({ type: Boolean, reflect: true })
+  accessor hideChecked = false;
+
+  // @event hideChecked state changed.
+  static readonly HIDE_CHECKED_CHANGE = "hideCheckedChange";
+
+  // @event An item is added to the list.
+  static readonly ITEM_ADD = "itemAdd";
+
+  // @event An items checked state or text change.
+  static readonly ITEM_CHANGE = "itemChange";
+
+  // @event An item is removed from the list.
+  static readonly ITEM_DELETE = "itemDelete";
+
   static override styles = [
     mlUiStyles,
     css`
@@ -47,9 +63,6 @@ export class MlChecklist extends LitElement {
   @state()
   private accessor addButtonEnabled: boolean = false;
 
-  @property({ type: Boolean })
-  accessor hideChecked = false;
-
   @query("#newitem")
   private accessor _input!: HTMLInputElement;
 
@@ -60,9 +73,7 @@ export class MlChecklist extends LitElement {
       <label>
         <input
           type="checkbox"
-          @change=${(ev: Event) => {
-            this.hideChecked = (ev.target as HTMLInputElement).checked;
-          }}
+          @change=${this._onHideCheckedCheckboxChange}
           ?checked=${this.hideChecked}
         />
         Hide Checked Items
@@ -125,6 +136,20 @@ export class MlChecklist extends LitElement {
     `;
   }
 
+  private async _onHideCheckedCheckboxChange(ev: Event) {
+    this.hideChecked = (ev.target as HTMLInputElement).checked;
+
+    await this.updateComplete;
+
+    this.dispatchEvent(
+      new CustomEvent(MlChecklist.HIDE_CHECKED_CHANGE, {
+        bubbles: true,
+        composed: true,
+        detail: { hideChecked: this.hideChecked },
+      }),
+    );
+  }
+
   private _onAddInputKeyDown(event: KeyboardEvent): void {
     if (event.code === "Enter" && this.addButtonEnabled) {
       this._addItem();
@@ -141,10 +166,12 @@ export class MlChecklist extends LitElement {
   }
 
   private _onItemTextChange(item: ChecklistItem, ev: Event): void {
+    item.text = (ev.target as MlTextEdit).text;
+
     ev.stopPropagation();
 
     this.dispatchEvent(
-      new CustomEvent("change", {
+      new CustomEvent(MlChecklist.ITEM_CHANGE, {
         bubbles: true,
         composed: true,
         detail: { item: item },
@@ -158,7 +185,7 @@ export class MlChecklist extends LitElement {
     ev.stopPropagation();
 
     this.dispatchEvent(
-      new CustomEvent("change", {
+      new CustomEvent(MlChecklist.ITEM_CHANGE, {
         bubbles: true,
         composed: true,
         detail: { item: item },
@@ -180,7 +207,7 @@ export class MlChecklist extends LitElement {
     this.addButtonEnabled = false;
 
     this.dispatchEvent(
-      new CustomEvent("add", {
+      new CustomEvent(MlChecklist.ITEM_ADD, {
         bubbles: true,
         composed: true,
         detail: { item: newItem },
@@ -200,7 +227,7 @@ export class MlChecklist extends LitElement {
     });
 
     this.dispatchEvent(
-      new CustomEvent("delete", {
+      new CustomEvent(MlChecklist.ITEM_DELETE, {
         bubbles: true,
         composed: true,
         detail: { item: deletedItem },

@@ -5,14 +5,13 @@
   "scripts": {
     "tidy": "prettier . --write",
     "check": "tsc --noEmit && eslint",
-    "build": "node ./esbuild.mjs",
-    "all": "npm run tidy && npm run check && npm run build",
-    "serve": "wds --watch"
+    "build": "node ./esbuild.mjs build",
+    "all": "pnpm tidy && pnpm check && pnpm build",
+    "serve": "node ./esbuild.mjs serve",
+    "pub": "MODE=prod pnpm all"
   },
   "devDependencies": {
     "@eslint/js": "^9.10.0",
-    "@web/dev-server": "^0.4.6",
-    "@web/dev-server-legacy": "^2.1.1",
     "@webcomponents/webcomponentsjs": "^2.8.0",
     "cssnano": "^7.0.6",
     "esbuild": "0.23.1",
