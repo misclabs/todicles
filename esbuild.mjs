@@ -7,7 +7,7 @@ if (!["dev", "prod"].includes(mode)) {
   throw new Error(`MODE must be "dev" or "prod", was "${mode}"`);
 }
 
-switch(process.argv[2]) {
+switch (process.argv[2]) {
   case "build":
     await build();
     break;
@@ -35,7 +35,10 @@ function createEsBuildConf() {
         in: "node_modules/@webcomponents/webcomponentsjs/webcomponents-loader.js",
         out: "webcomponents-loader",
       },
-      { in: "node_modules/lit/polyfill-support.js", out: "lit-polyfill-support" },
+      {
+        in: "node_modules/lit/polyfill-support.js",
+        out: "lit-polyfill-support",
+      },
     ],
     target: "es2015",
     bundle: true,
@@ -43,7 +46,7 @@ function createEsBuildConf() {
     metafile: true,
     color: true,
     plugins: [esbuildPostcss()],
-  };  
+  };
 
   if (mode === "dev") {
     conf.outdir = "test/build";
@@ -53,7 +56,7 @@ function createEsBuildConf() {
     conf.minify = true;
     conf.drop = ["console"];
     conf.dropLabels = ["DEV"];
-  }  
+  }
 
   return conf;
 }
@@ -65,21 +68,22 @@ async function build() {
 
   try {
     const result = await esbuild.build(conf);
-    
+
     if (result.metafile) {
       // console.log(await esbuild.analyzeMetafile(result.metafile, { color: true, verbose: false}));
       fs.writeFileSync("esbuild.meta.json", JSON.stringify(result.metafile));
-      console.log("esbuild metafile written to esbuild.meta.json. View w/ https://esbuild.github.io/analyze/\n")
+      console.log(
+        "esbuild metafile written to esbuild.meta.json. View w/ https://esbuild.github.io/analyze/\n",
+      );
 
       const outputs = result.metafile.outputs;
       for (const okey in outputs) {
         console.log(`${(outputs[okey].bytes / 1024).toFixed(1)}kb\t${okey}`);
       }
     }
-  
+
     console.log(`\nBuild's done. ${result.warnings.length > 0 ? "😒" : "😁"}`);
-    
-  } catch(e) {
+  } catch (e) {
     console.log("Went not-great. 😭");
   }
 }
@@ -104,7 +108,7 @@ async function serve() {
   } else {
     serveConf.servedir = "docs";
   }
-  
+
   const result = await ctx.serve(serveConf);
   console.log(
     `🏪 Serving ${serveConf.servedir} at ${result.host}:${result.port} mode=${mode} ${mode === "dev" ? "🛠️" : "🚀"}\n`,
