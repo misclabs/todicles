@@ -99,11 +99,12 @@ async function watch() {
 async function serve() {
   const conf = createEsBuildConf();
   const ctx = await esbuild.context(conf);
-
   const serveConf = {
     host: "127.0.0.1",
   };
+
   if (mode === "dev") {
+    await ctx.watch();
     serveConf.servedir = "test";
   } else {
     serveConf.servedir = "docs";

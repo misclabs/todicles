@@ -13,12 +13,8 @@
 
     <script type="module">
       const checklist = document.querySelector("ml-checklist");
-      console.log("saved hideChecked=", localStorage.getItem("hideChecked"));
       checklist.hideChecked = localStorage.getItem("hideChecked") === "true";
       checklist.addEventListener("hideCheckedChange", (e) => {
-        console.log(
-          `checklist hideChecked change e.target.hideChecked=${e.target.hideChecked} e.detail.hideChecked=${e.detail.hideChecked}`,
-        );
         localStorage.setItem("hideChecked", e.target.hideChecked);
       });
       checklist.addEventListener("itemAdd", logCustomEvent);
